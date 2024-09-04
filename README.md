@@ -1,4 +1,4 @@
 # feedback-analysis
 
 ## Architecture 
-![alt text](api-lambda-comprehend.drawio.png)
+![architecture diagram](api-lambda-comprehend.drawio.png)
