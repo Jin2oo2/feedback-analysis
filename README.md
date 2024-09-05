@@ -13,19 +13,25 @@ This serverless REST API gets integrated with  web applications that allows user
 - Optional real-time dashboard for visualizing overall sentiment trends
 
 
-## Endpoints
-POST`/feedback-analysis`: sends feedback to Amazon comprehend for sentiment analysis
-<br>
-Request body 
-<br>
-`
+## Request and Response
+
+### Request example POST
+Sends feedback to Amazon comprehend for sentiment analysis
+```
+curl -X POST https://123456789.execute-api.eu-west-2.amazonaws.com/prod/feedback-analysis \
+-H "Content-Type: application/json" \
+-d '{
+  "feedback":"I ordered a small and expected it to fit just right but it was a little bit more like a medium-large. It was great quality. Its a lighter brown than pictured but fairly close. Would be ten times better if it was lined with cotton or wool on the inside.", 
+  "language_code":"en"
+}'
+```
+### Response POST
+```
 {
-  "feedback": "some feedback text",
-  "language_code": en | fr| de | ja | etc
+  "statusCode": 200, 
+  "body": "{\"sentiment_lable\": \"POSITIVE\", \"sentiment_score\": 0.9994593262672424}"
 }
-`
-<br><br>
-GET`/feedback-analysis`: Retrieve all the analysed feedbacks stored in DynamoDB
+```
 
 
 ## **DynamoDB Items**
