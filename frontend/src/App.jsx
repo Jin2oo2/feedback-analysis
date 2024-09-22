@@ -1,7 +1,18 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Feedback from './pages/Feedback';
+import Results from './pages/Results';
+import NoPage from './pages/NoPage';
+
 export default function App() {
   return (
-    <h1 className="text-3xl bg-red-500 font-bold underline">
-      Hello world!
-    </h1>
+    <>
+      <Routes>
+        <Route path='/' element={<Navigate to="/feedback" replace />} />
+        <Route path='feedback' element={<Feedback />} />
+        <Route path='results' element={<Results />}/>
+        <Route path='*' element={<NoPage />}/>
+      </Routes>
+
+    </>
   )
 }
