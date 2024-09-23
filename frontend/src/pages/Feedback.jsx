@@ -12,7 +12,7 @@ export default function Feedback() {
 
         <div className="flex justify-center mb-10">
           {/* headline */}
-          <div className="flex">
+          <div className="flex items-center">
             <Brain className="w-12 h-12 mx-3" />
             <h1 className="playfair-display text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">AI Analysies Your Feedback</h1>
           </div>          
@@ -34,8 +34,6 @@ export default function Feedback() {
               <p><Link to="/results">Go to results</Link></p>
           </div>
         </div>
-
-        
 
       </div>
     </>
