@@ -17,6 +17,5 @@ export const analyseFeedback = async (feedbackText) => {
   }
 }
 
-
-analyseFeedback("It's a crazy website in a good way.")
-console.log('Hello!!')
+// analyseFeedback("It's a crazy website in a good way.")
+// console.log('Hello!!')
