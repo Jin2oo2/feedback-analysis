@@ -15,7 +15,7 @@ This serverless REST API gets integrated with  web applications that allows user
 
 ## Request and Response
 
-### Request example POST
+### POST request example
 Sends feedback to Amazon comprehend for sentiment analysis
 ```
 curl -X POST https://123456789.execute-api.eu-west-2.amazonaws.com/prod/feedback-analysis \
@@ -25,7 +25,8 @@ curl -X POST https://123456789.execute-api.eu-west-2.amazonaws.com/prod/feedback
   "language_code":"en"
 }'
 ```
-### Response POST
+
+### POST response
 ```
 {
   "statusCode": 200, 
@@ -33,7 +34,22 @@ curl -X POST https://123456789.execute-api.eu-west-2.amazonaws.com/prod/feedback
 }
 ```
 
+### GET request example
+Retrieve analysed records from database
+```
+curl https://123456789.execute-api.eu-west-2.amazonaws.com/prod/feedback-analysis
+```
 
+### GET response
+```
+{
+  "items": [{"SentimentScore": {"N": "0.9943833351135254"}, "Timestamp": {"S": "2024-09-28T13:47:19.161668Z"}, "SentimentLabel":   {"S": "NEGATIVE"}, "FeedbackID": {"S": "f7177ac1-0676-4c0f-9eff-582f5b86d3aa"}, "UserFeedback": {"S": "This website is too late."}},],
+  "counts:" 12
+}
+```
+
+- `items`: Record of each feedback analysis
+- `counts`: Number of records returned
 ## **DynamoDB Items**
 
 | Attribute        | Data Type  | Description                                |
