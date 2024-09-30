@@ -1,10 +1,10 @@
 import axios from 'axios'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
 
-// setting up API url from .env file
-dotenv.config();
-const apiUrl = process.env.VITE_API_URL;
+// // setting up API url from .env file
+// dotenv.config();
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 // POST method for feedback analysis
