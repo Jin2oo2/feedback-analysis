@@ -14,6 +14,7 @@ logger.setLevel(logging.INFO)
 # set up aws clients 
 comprehend_client = boto3.client('comprehend')
 dynamodb_client = boto3.client('dynamodb')
+dynamodb_resource = boto3.resource('dynamodb')
 table_name = os.environ.get('TABLE_NAME')
 
 
@@ -26,8 +27,8 @@ def lambda_handler(event, context):
   try:
     if http_method == 'GET':
       logger.info('Retrieving records from DynamoDB')
-      response = dynamodb_client.scan(
-        TableName=table_name,
+      table = dynamodb_resource.Table(table_name)
+      response = table.scan(
         Select='ALL_ATTRIBUTES'
       )
 
@@ -35,10 +36,12 @@ def lambda_handler(event, context):
       while 'LastEvaluatedKey' in response:
         response = dynamodb_client.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
         items.extend(response['Items'])
-
+      
       counts = len(items)
-      logger.info(f'Number of items returned from database: {counts}')
-
+      
+      logger.info(f'Retuend items: {items}')
+      logger.info(f'Number of returned items: {counts}')
+      
       response_body = {
         'items': items,
         'counts': counts
@@ -46,7 +49,7 @@ def lambda_handler(event, context):
 
       return {
         'statusCode': 200,
-        'body': json.dumps(response_body)
+        'body': json.dumps(response_body, default=float)
       }
 
     elif http_method == 'POST':
