@@ -7,7 +7,7 @@ This serverless REST API gets integrated with  web applications that allows user
 
 
 ## Features
-- Collect customer feedback via a web interface
+- Collect customer feedback via a [web interface](https://github.com/Jin2oo2/feedback-analysis/tree/main/frontend)
 - Sentiment analysis (positive, negative, neutral, mixed) using Amazon Comprehend
 - Store feedback and analysis results in DynamoDB
 - Optional real-time dashboard for visualizing overall sentiment trends
