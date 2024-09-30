@@ -3,16 +3,34 @@ import { Brain, Send } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import { analyseFeedback } from "../api/analyseFeedback"
 
+const initResult = {
+  "sentiment_lable": "POSITIVE",
+  "sentiment_score": "0.9997097849845886"
+}
 
 export default function Feedback() {
   const [feedback, setFeedback] = useState("");
+  const [feedbackSent, setFeedbackSent] = useState(null)
+  const [result, setResult] = useState(null)
   const [isDisabled, setIsDisabled] = useState(true)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(`feedback: ${feedback}`);
-    setFeedback("");
+    setIsDisabled(true)
+    
+    // Call API here
+    try {
+      const response = await analyseFeedback(feedback, "en")
+      setResult(response)
+      setFeedbackSent(feedback)
+    } catch (error) {
+      console.error("Error occured:", error)
+    } finally {
+      setFeedback("");
+    }
   }
 
   const handleKeyDown = (e) => {
@@ -65,9 +83,19 @@ export default function Feedback() {
             <div className="text-cyan-500 underline">
               {/* Link to /results */}
               <p><Link to="/results">Go to results</Link></p>
-          </div>
-        </div>
+            </div>
 
+            <div>
+              {result && (
+                <div className="mt-5 p-4 bg-gray-800 rounded-lg">
+                  <h3 className="text-lg font-bold text-cyan-500">Feedback Analysis Result:</h3>
+                  <p className="text-white"><strong>Feedback Text:</strong> {feedbackSent}</p>
+                  <p className="text-white"><strong>Sentiment Lable:</strong> {result.sentiment_lable}</p>
+                  <p className="text-white"><strong>Sentiment Score:</strong> {result.sentiment_score}</p>
+                </div>
+              )}
+            </div>
+        </div>
       </div>
     </>
   )
