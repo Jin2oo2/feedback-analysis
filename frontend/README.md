@@ -1,8 +1,9 @@
-# React + Vite
+# Feedback Sentiment Analysis Frontend with React 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`/feedback` <br>
+This page is the home page for sending feedbacks and showing the result. <br>
+![Home page sceenshot](./src/assets/screenshot-home.png)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`/results` <br>
+This page shows the records of feedbacks that were analysed by Amazon Comprehend. <br>
+![Result page sceenshot](./src/assets/screenshot-results.png)

@@ -5,10 +5,6 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { analyseFeedback } from "../api/analyseFeedback"
 
-const initResult = {
-  "sentiment_lable": "POSITIVE",
-  "sentiment_score": "0.9997097849845886"
-}
 
 export default function Feedback() {
   const [feedback, setFeedback] = useState("");
