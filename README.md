@@ -60,6 +60,39 @@ curl https://123456789.execute-api.eu-west-2.amazonaws.com/prod/feedback-analysi
 | `SentimentLabel` | `String`   | Sentiment label (Positive, Negative, Neutral, Mixed) |
 | `Timestamp`      | `String`   | Time when the feedback was submitted       |
 
+## Infrastructure as Code (Terraform)
+
+### Terraform Modules Included
+
+- **Lambda Function**: Python function for analyzing feedback using Amazon Comprehend
+- **API Gateway (REST)**: `GET` and `POST` methods on `/feedback-analysis`
+- **DynamoDB Table**: Stores feedback and analysis results
+- **Amazon Comprehend**: Integrated within Lambda
+- **IAM Role**: Predefined IAM role used for Lambda execution
+- **CloudWatch Logs**: Automatically enabled for Lambda
+- **Outputs**: API endpoint URL shown after deployment
+
+---
+
+### How to Deploy
+
+> Requirements:  
+> - [Terraform installed](https://developer.hashicorp.com/terraform/downloads)  
+> - AWS credentials configured locally (`aws configure`)
+
+```bash
+# 1. Clone this repository and navigate to the Terraform directory
+cd terraform
+
+# 2. Initialize Terraform (downloads provider plugins)
+terraform init
+
+# 3. See the changes Terraform will make
+terraform plan
+
+# 4. Deploy the infrastructure
+terraform apply
+```
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
